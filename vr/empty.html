@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<title>aframe starter</title>
+    <script src="/_resources/src/aframe.min.js"></script>
+	<script src="/_resources/src/button.js"></script>
+	<link rel="stylesheet" type="text/css" href="/_resources/src/helptext.css">
+
+  </head>
+  <body>
+    <a-scene>
+		
+		<a-sky
+		 id="sky"
+		 radius="1000"
+		 src="/_resources/images/square.png"
+		 repeat="50 50"
+			   ></a-sky>
+		
+	   <a-circle id="floor" position="0 -2 0" src="/_resources/images/square.png" material="repeat: 100 100" height="100 " width="100" radius="100" rotation="-90 0 0" ></a-circle>
+		
+    </a-scene>
+</html>

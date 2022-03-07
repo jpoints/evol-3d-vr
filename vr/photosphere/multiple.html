@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<title>aframe starter</title>
+    <script src="/_resources/src/aframe.min.js"></script>
+	<script src="/_resources/src/keyboard-rotate.js"></script>
+	<link rel="stylesheet" type="text/css" href="/_resources/src/helptext.css">
+	 <script>
+		addKeyboardRotate('rig');
+		 
+		 var items = [
+			 {
+				 src:"/_resources/images/photospheres/ou-cafe.jpeg",
+				 title:"OU Cafe",
+				 description:"There are two times of the day when our OU Cafe is packed: \n\n 1) lunch time \n\n 2) the moment the coffee is done brewing! \n\n We also have a pretty impressive turnout during our trivia tournaments or Lunch & Learn sessions."
+			 },
+			 {
+				 src:"/_resources/images/photospheres/snacks.jpeg",
+				 title:"Snacks!!",
+				 description:"One of the many perks of being an OU employee is the snack bar! The health conscious can find fresh fruit, humus, and granola. There's a steady supply of M&Ms for those in need of a quick chocolate fix. And the developer's best friend, an espresso machine, can be found gracing the kitchen island."
+			 },
+			 {
+				 src:"/_resources/images/photospheres/arch-rock.jpeg",
+				 title:"Arch Rock",
+				 description:"One of our four conference rooms, Arch Rock is a center for collaborative work and brain power. Here, we gather to discuss upcoming product releases, plan customer projects, and Zoom Room conference with our Destiny Solutions teammates in Toronto."
+			 },
+		 ]
+		 
+		 var length = items.length;
+		 var current = 0;
+		 
+		 window.onload = function(){
+			var sky = document.getElementById("sky");
+		 	var title = document.getElementById("title");
+		 	sky.setAttribute('src',items[current].src);
+		 	title.setAttribute('text',"value",items[current].title);
+			description.setAttribute('text',"value",items[current].description);
+		 };
+		 
+		 AFRAME.registerComponent('next', {
+			 init: function () {
+				 this.el.addEventListener('click', function (evt) {
+					 var sky = document.getElementById("sky");
+		 			 var title = document.getElementById("title");
+					 current = (current + 1) % length;
+					 sky.setAttribute('src',items[current].src);
+					 title.setAttribute('text',"value",items[current].title);
+					 description.setAttribute('text',"value",items[current].description);
+				 });
+			 }
+		 });
+		 
+		  AFRAME.registerComponent('previous', {
+			 init: function () {
+				 this.el.addEventListener('click', function (evt) {
+					 var sky = document.getElementById("sky");
+		 			 var title = document.getElementById("title");
+					 current = (current - 1 + length) % length;
+					 sky.setAttribute('src',items[current].src);
+					 title.setAttribute('text',"value",items[current].title);
+					 description.setAttribute('text',"value",items[current].description);
+				 });
+			 }
+		 });
+		 
+		 AFRAME.registerComponent('toggledescription', {
+			 init: function () {
+				 let el = this.el;
+				 this.el.addEventListener('click', function (evt) {
+				  var isVisible = description.getAttribute('visible');
+				  if(isVisible){
+					el.setAttribute('text',"value","show");
+				  }
+				  else{
+					el.setAttribute('text',"value","hide");
+				  }
+				  description.setAttribute('visible',!isVisible);
+				 });
+			 }
+		 });
+	  </script>
+  </head>
+  <body>
+    <a-scene id="scene">
+	  <a-entity>
+	  	<a-entity laser-controls="hand:left" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  	<a-entity laser-controls="hand:right" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  </a-entity>
+		  
+	  <a-entity id="rig" position="0 0 0" rotation="0 0 0" animation="property: rotation">
+			  <a-camera id="camera" wasd-controls="enabled:false"  cursor="rayOrigin:mouse">
+		  	  </a-camera>
+	  </a-entity>
+		
+	  <a-sky id="sky" radius="10000" src=""></a-sky>
+		
+      <a-plane id="title" class="collide" position="0 .2 -3" height="0.5" width="5"  color="white" transparent="true" opacity="0.8"
+			   text="value:Loading...;zOffset:.01;color:black;align:center;width:3;height:0.5"></a-plane>
+		
+	 <a-plane next class="collide" position="3 .2 -3" height="0.5" width="0.7"  color="white" transparent="true" opacity="0.8"
+			  text="value:Next;zOffset:.01;color:black;align:center;width:3;height:0.5"></a-plane>
+		
+	 <a-plane previous class="collide" position="-3 .2 -3" height="0.5" width="0.7"  color="white" transparent="true" opacity="0.8"
+				  text="value:Previous;zOffset:.01;color:black;align:center;width:3;height:0.5"></a-plane>
+		
+	<a-plane id="description" visible="true" class="collide" position="0 3 -6" height="4" width="10"  color="white" transparent="true" opacity="0.9"
+			   text="value:There are two times of the day when our OU Cafe is packed: \n\n 1) lunch time \n\n 2) the moment the coffee is done brewing! \n\n We also have a pretty impressive turnout during our trivia tournaments or Lunch & Learn sessions.;zOffset:.01;color:black;align:left;width:7.5;height:1;lineHeight:50"
+	  ></a-plane>
+		
+	<a-circle toggledescription class="collide" radius="0.5" position="5 5 -5.9" color="blue" text="value:hide;align:center;color:white;width:6"></a-circle>
+
+    </a-scene>
+	  <div id="helptext"><ouc:div label="maincontent" group="Everyone" button-text="Main Content"><p>Place help text here.</p></ouc:div>
+	  </div>
+  <!-- ouc:button --><a href="https://a.cms.omniupdate.com/10?skin=outc20&amp;account=master-outc20&amp;site=gallena&amp;action=de&amp;path=/vr/photosphere/multiple.html">Last Updated 3/3/20</a><!-- /ouc:button --></body>
+</html>

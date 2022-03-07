@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<title>aframe starter</title>
+    <script src="/_resources/src/aframe.min.js"></script>
+	<script src="/_resources/src/keyboard-rotate.js"></script>
+	<script src="/_resources/src/onintersected.js"></script>  
+	  
+	<link rel="stylesheet" type="text/css" href="/_resources/src/helptext.css">
+	 <script>
+		addKeyboardRotate('rig');
+		addOnIntersected('collide');
+ 
+		 var items = [];
+		 var length = 0;
+		 var current = 0;
+		 var feed = '/_resources/feeds/office-text-mode.json';
+		 
+		 window.onload = function(){
+			var sky = document.getElementById("sky");
+			sky.setAttribute('material','opacity',0);
+
+		 	var title = document.getElementById("title");
+			
+			let response = fetch(feed, {method: 'GET'}).then(function(response){
+				response.json().then(function(value){
+					console.log(value);
+					items = value;
+					length = items.length;
+					console.log("---", items)
+					sky.setAttribute('src',items[current].src);
+					title.setAttribute('text',"value",items[current].title);
+					description.setAttribute('text',"value",items[current].description);
+					
+					document.getElementById("text-title").innerText = items[current].title;
+				 	document.getElementById("text-description").innerText = items[current].description;
+				 	document.getElementById("text-image-description").innerText = items[current].imgdescription;
+					
+				});
+			});
+			 
+			 var textMode = document.getElementById("textmode");
+			 textMode.addEventListener('click', function (evt) {
+				 var scene = document.getElementById("scene");
+				 var embedded = scene.getAttribute("embedded");
+				 var helper = document.getElementById("helper");
+				 
+				 if(embedded){
+					document.getElementById("textmode").focus();
+					helper.style.display = "block"
+				 }
+				 else{
+					document.getElementById("text-next").focus();
+					helper.style.display = "None"
+				 }
+				 scene.setAttribute('embedded', !embedded);
+			 });
+			 
+			 var textNext = document.getElementById("text-next");
+			 textNext.addEventListener('click', function (evt) {
+				 current = (current + 1) % length;
+				 document.getElementById("text-title").innerText = items[current].title;
+				 document.getElementById("text-description").innerText = items[current].description;
+				 document.getElementById("text-image-description").innerText = items[current].imgdescription;
+				 
+				 document.getElementById("title").setAttribute('text',"value",items[current].title);
+				 document.getElementById("description").setAttribute('text',"value",items[current].description);
+				 document.getElementById("sky").setAttribute('src',items[current].src);
+			 });
+			 
+ 			 var textPrevious = document.getElementById("text-previous");
+			 textPrevious.addEventListener('click', function (evt) {
+				 current = (current - 1 + length) % length;
+				 document.getElementById("text-title").innerText = items[current].title;
+				 document.getElementById("text-description").innerText = items[current].description;
+				 document.getElementById("text-image-description").innerText = items[current].imgdescription;
+				 
+				 document.getElementById("title").setAttribute('text',"value",items[current].title);
+				 document.getElementById("description").setAttribute('text',"value",items[current].description);
+				 document.getElementById("sky").setAttribute('src',items[current].src);
+			 });
+
+		 };
+		 
+		 AFRAME.registerComponent('next', {
+			 init: function () {
+				 this.el.addEventListener('click', function (evt) {
+					 var sky = document.getElementById("sky");
+		 			 var title = document.getElementById("title");
+					 current = (current + 1) % length;
+					 sky.setAttribute('material','opacity',0);
+					 sky.setAttribute('src',items[current].src);
+					 title.setAttribute('text',"value",items[current].title);
+					 description.setAttribute('text',"value",items[current].description);
+					 
+					document.getElementById("text-title").innerText = items[current].title;
+				 	document.getElementById("text-description").innerText = items[current].description;
+				 	document.getElementById("text-image-description").innerText = items[current].imgdescription;
+				 });
+			 }
+		 });
+		 
+		  AFRAME.registerComponent('previous', {
+			 init: function () {
+				 this.el.addEventListener('click', function (evt) {
+					 var sky = document.getElementById("sky");
+		 			 var title = document.getElementById("title");
+					 current = (current - 1 + length) % length;
+					 sky.setAttribute('material','opacity',0);
+					 sky.setAttribute('src',items[current].src);
+					 title.setAttribute('text',"value",items[current].title);
+					 description.setAttribute('text',"value",items[current].description);
+					 
+					document.getElementById("text-title").innerText = items[current].title;
+				 	document.getElementById("text-description").innerText = items[current].description;
+				 	document.getElementById("text-image-description").innerText = items[current].imgdescription;
+				 });
+			 }
+		 });
+		 
+		 AFRAME.registerComponent('toggledescription', {
+			 init: function () {
+				 let el = this.el;
+				 this.el.addEventListener('click', function (evt) {
+				  var isVisible = description.getAttribute('visible');
+				  if(isVisible){
+					el.setAttribute('text',"value","show");
+				  }
+				  else{
+					el.setAttribute('text',"value","hide");
+				  }
+				  description.setAttribute('visible',!isVisible);
+				 });
+			 }
+		 });
+	  </script>
+	  
+	 
+	  
+	  
+	  
+  </head>
+  <body>
+	<div id="wrapper" style="position:absolute;bottom:10px;right:10px;width:120px;height:100px;">
+    <a-scene id="scene" embedded="false">
+	  <a-entity>
+	  	<a-entity laser-controls="hand:left" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  	<a-entity laser-controls="hand:right" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  </a-entity>
+		  
+	  <a-entity id="rig" position="0 0 0" rotation="0 0 0" animation="property: rotation">
+			  <a-camera id="camera" wasd-controls="enabled:false"  cursor="rayOrigin:mouse">
+		  	  </a-camera>
+	  </a-entity>
+		
+	  <a-sky 
+			 id="sky" 
+			 radius="500" 
+			 src=""
+			 animation="easing:linear;property: material.opacity; from:0; to:1; dur: 2000; startEvents: materialtextureloaded"
+	  ></a-sky>
+		
+	  <a-sky  
+			 radius="5000" 
+			 color="black"
+	  ></a-sky>
+		
+      <a-plane id="title" class="collide" position="0 .2 -4" height="0.5" width="5"  color="white" transparent="true" opacity="0.8"
+			   text="value:Loading...;zOffset:.01;color:black;align:center;width:3;height:0.5"></a-plane>
+		
+	 <a-plane next collide class="collide" position="3.5 .2 -4" height="0.5" width="0.7"  color="blue" transparent="true" opacity="0.8"
+			  text="value:Next;zOffset:.01;color:white;align:center;width:3;height:0.5"></a-plane>
+		
+	 <a-plane previous collide class="collide" position="-3.5 .2 -4" height="0.5" width="0.7"  color="blue"  transparent="true" opacity="0.8"
+				  text="value:Previous;zOffset:.01;color:white;align:center;width:3;height:0.5"></a-plane>
+		
+		<a-plane id="description" visible="true" class="collide" position="0 3 -6" height="4" width="10"  color="white" transparent="true" opacity="0.9"
+			   text="value:There are two times of the day when our OU Cafe is packed: \n\n 1) lunch time \n\n 2) the moment the coffee is done brewing! \n\n We also have a pretty impressive turnout during our trivia tournaments or Lunch & Learn sessions.;zOffset:.01;color:black;align:left;width:7.5;height:1;lineHeight:50"
+	  ></a-plane>
+		
+	<a-circle toggledescription collide class="collide" radius="0.5" position="4.8 4.8 -5.7" color="blue" text="value:hide;align:center;color:white;width:6"></a-circle>
+
+    </a-scene>
+   </div>
+	   <div class="text">
+		<h1 id="text-title">This is a title</h1>
+		<h2>Description</h2>
+		<p id="text-description">This is a the description</p>
+		<h2>Scene Description</h2>
+		<p id="text-image-description">This is a description of the 360 image</p>
+		<button id="text-previous">Previous</button>
+		<button id="text-next">Next</button>
+		<div style="display:none"><!-- ouc:ob --><a href="https://a.cms.omniupdate.com/10?skin=outc20&amp;account=master-outc20&amp;site=gallena&amp;action=de&amp;path=/vr/photosphere/json-feed-text-mode.html">Last Updated 3/3/20</a><!-- /ouc:ob --></div>
+		<hr/>
+	</div>
+	<div id="helptext">
+		<ouc:div label="maincontent" group="Everyone" button-text="Main Content"><div id="helper">
+<p>Use arrow keys to rotate.</p>
+</div>
+<p><button id="textmode" autofocus="">text mode</button></p></ouc:div>
+   </div>
+  </body>
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<title>aframe starter</title>
+    <script src="/_resources/src/aframe.min.js"></script>
+	<script src="/_resources/src/button.js"></script>
+	<link rel="stylesheet" type="text/css" href="/_resources/src/helptext.css">
+
+	<script>
+			
+		AFRAME.registerComponent('floor-toggle', {
+			init: function () {
+				this.el.addEventListener('click', evt => {
+				  var floor = document.getElementById("floor");
+				  var isVisible = floor.getAttribute('visible');
+				  floor.setAttribute('visible',!isVisible);
+				  console.log("clicked");
+				});
+		  }
+		}); 
+		
+		
+	 	AFRAME.registerComponent('setplain', {
+			init: function () {
+				this.el.addEventListener('click', evt => {
+				  var sky = document.getElementById("sky");
+				  var floor = document.getElementById("floor");
+				  sky.src = null;
+				  sky.setAttribute('src',"");
+				  sky.setAttribute('repeat',"1 1");
+				  console.log("clicked");
+				});
+		  }
+		}); 
+		
+		AFRAME.registerComponent('setphoto', {
+			init: function () {
+				this.el.addEventListener('click', evt => {
+				  var sky = document.getElementById("sky");
+				  sky.src = null;
+				  sky.setAttribute('repeat',"1 1");
+				  sky.setAttribute('src',"/_resources/images/photospheres/snacks.jpeg");
+				  console.log("clicked");
+				});
+		  }
+		}); 
+		
+		AFRAME.registerComponent('setrepeat', {
+			init: function () {
+				this.el.addEventListener('click', evt => {
+				  var sky = document.getElementById("sky");
+				  sky.src = null;
+				  sky.setAttribute('repeat',"50 50");
+				  sky.setAttribute('src',"/_resources/images/square.png");
+				  console.log("clicked");
+				});
+		  }
+		}); 
+	 </script>
+  </head>
+  <body>
+    <a-scene>
+		
+		
+	  <a-entity>
+	  	<a-entity laser-controls="hand:left" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  	<a-entity laser-controls="hand:right" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  </a-entity>
+		  
+		<a-sky
+		 id="sky"
+		 radius="1000"
+	     color="lightblue"
+		 src="/_resources/images/square.png"
+		 repeat="50 50"
+			   ></a-sky>
+		
+	  <a-entity id="rig" position="0 -1 0" rotating rotation="0 0 0" animation="property: rotation">
+			  <a-camera id="camera" cursor="rayOrigin:mouse"></a-camera>
+	  </a-entity>
+	  <a-circle id="floor" position="0 -2 0" src="/_resources/images/square.png" material="repeat: 100 100" height="100 " width="100" radius="100" rotation="-90 0 0" ></a-circle>
+		
+		<a-plane position="0 2 -4" height="0.5" width="3" 
+				text="value:<a-sky>;zOffset:.01;color:black;align:center;width:2;height:0.5"
+		></a-plane>
+		
+		
+	   <a-plane button color="blue" setrepeat position="0 0 -3" height="1" width="1" 
+				text="value:Repeated Texture;zOffset:.01;color:white;align:center;width:2;height:0.5"
+		></a-plane>
+	   <a-plane button color="blue" setphoto sky2 position="-2 0 -3" height="1" width="1" 
+				text="value:Photosphere;zOffset:.01;color:white;align:center;width:2;height:0.5"
+		></a-plane>
+	   <a-plane button color="blue" setplain sky3 position="2 0 -3" height="1" width="1" 
+				text="value:Single Color;zOffset:.01;color:white;align:center;width:2;height:0.5" 
+		></a-plane>
+	   <a-circle 
+				 floor-toggle 
+				 radius=".3" 
+				 position="0 -1 -3" 
+				 color="blue" 
+				 text="value:Toggle Floor;zOffset:.01;color:white;align:center;width:2;height:0.5"
+				 button
+		></a-circle>
+
+
+
+
+
+    </a-scene>
+	  <div id="helptext"><ouc:div label="maincontent" group="Everyone" button-text="Main Content"><p>If desktop mode, use arrow keys or WASD to walk around.</p></ouc:div>
+	  </div>
+  <!-- ouc:button --><a href="https://a.cms.omniupdate.com/10?skin=qa&amp;account=testing-update3&amp;site=gallena&amp;action=de&amp;path=/aframe/vr/aframe/sky.html">Last Updated 2/23/20</a><!-- /ouc:button --></body>
+</html>

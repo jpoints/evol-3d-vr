@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<title>aframe starter</title>
+    <script src="/_resources/src/aframe.min.js"></script>
+	<script src="/_resources/src/button.js"></script>
+	<link rel="stylesheet" type="text/css" href="/_resources/src/helptext.css">
+	  
+	 <script>
+	  AFRAME.registerComponent('earth', {
+			init: function(){},
+		    tick: function(){
+				//present overflow. reset when it reaches -360 
+				if(this.el.object3D.rotation.y === -360){
+					this.el.object3D.rotation.y = 0}
+				this.el.object3D.rotation.y = this.el.object3D.rotation.y - .01
+			}
+		}); 
+	  </script>
+
+  </head>
+  <body>
+    <a-scene>
+		
+		
+	  <a-entity>
+	  	<a-entity laser-controls="hand:left" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  	<a-entity laser-controls="hand:right" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  </a-entity>
+		  
+		<a-sky
+		 id="sky"
+		 radius="1000"
+		 src="/_resources/images/square.png"
+		 repeat="50 50"
+			   ></a-sky>
+		
+	   <a-camera id="camera" cursor="rayOrigin:mouse"></a-camera>
+		
+	   <a-sphere src="/_resources/images/earth.jpg" position="0 2 -3" color="grey"
+		animation="property: rotation; to: 0 -360 0; loop: true;dur:8000"	 
+		></a-sphere>
+		
+		<a-sphere earth src="/_resources/images/earth.jpg" position="4 2 -3" color="grey"
+		></a-sphere>
+
+
+	   <a-circle id="floor" position="0 -2 0" src="/_resources/images/square.png" material="repeat: 100 100" height="100 " width="100" radius="100" rotation="-90 0 0" ></a-circle>
+		
+    </a-scene>
+	  <div id="helptext"><ouc:div label="maincontent" group="Everyone" button-text="Main Content"><p>If desktop mode, use arrow keys or WASD to walk around.</p></ouc:div>
+	  </div>
+  <!-- ouc:button --><a href="https://a.cms.omniupdate.com/10?skin=qa&amp;account=testing-update3&amp;site=gallena&amp;action=de&amp;path=/aframe/vr/aframe/components.html">Last Updated 2/23/20</a><!-- /ouc:button --></body>
+</html>

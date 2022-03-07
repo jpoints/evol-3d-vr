@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<title>aframe starter</title>
+    <script src="/_resources/src/aframe.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/_resources/src/helptext.css">
+	 <script>
+		 AFRAME.registerComponent('rig', {
+			 init: function () {
+				var el = this.el;
+			    document.addEventListener('keydown', function(event) {
+					var code = event.keyCode;
+					switch (code) {
+						case 37:
+							el.object3D.rotation.y += .1;
+							break;
+						case 38:
+							el.object3D.rotation.x += .1;
+							break;
+						case 39:
+							el.object3D.rotation.y -= .1;
+							break;
+						case 40:
+							el.object3D.rotation.x -= .1;
+							break;
+					}
+				});
+			 }
+		 });
+	  </script>
+  </head>
+  <body>
+    <a-scene>
+	  <a-entity>
+	  	<a-entity laser-controls="hand:left" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  	<a-entity laser-controls="hand:right" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  </a-entity>
+		  
+	  <a-entity rig position="0 1.5 0" rotation="0 0 0" animation="property: rotation">
+			  <a-camera wasd-controls="enabled:false"  cursor="rayOrigin:mouse">
+		  	  </a-camera>
+	  </a-entity>
+		
+	  <a-sky radius="30" src="/_resources/images/photospheres/ou-cafe.jpeg"></a-sky>
+		
+      <a-plane class="collide" position="0 4 -3" height="0.5" width="5"  color="white" transparent="true" opacity="0.8"
+			   text="value:Welcome to Modern Campus Cafe!;zOffset:.01;color:black;align:center;width:3;height:0.5"
+	  ></a-plane>
+		
+	   <a-plane class="collide" position="0 1 -6" height="3.5" width="12"  color="white" transparent="true" opacity="0.8"
+			   text="value:Two times a day our the cafe is packed: \n\n 1) lunch time \n\n 2) the moment the coffee is done brewing! \n\n We also have a pretty impressive turnout during our trivia tournaments or Lunch & Learn sessions.;zOffset:.01;color:black;align:left;width:7;height:4"
+	  ></a-plane>
+
+    </a-scene>
+	  <div id="helptext"><ouc:div label="maincontent" group="Everyone" button-text="Main Content"><p>Place help text here.</p></ouc:div>
+	  </div>
+  <!-- ouc:button --><a href="https://a.cms.omniupdate.com/10?skin=outc20&amp;account=master-outc20&amp;site=gallena&amp;action=de&amp;path=/vr/photosphere/single.html">Last Updated 3/3/20</a><!-- /ouc:button --></body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<title>aframe starter</title>
+    <script src="/_resources/src/aframe.min.js"></script>
+	<script src="/_resources/src/keyboard-rotate.js"></script>
+	<script src="/_resources/src/onintersected.js"></script>  
+	  
+	<link rel="stylesheet" type="text/css" href="/_resources/src/helptext.css">
+	 <script>
+		addKeyboardRotate('rig');
+		addOnIntersected('collide');
+ 
+		 var items = [];
+		 var length = 0;
+		 var current = 0;
+		 var feed = '/_resources/feeds/office.json';
+		 
+		 window.onload = function(){
+			var sky = document.getElementById("sky");
+			sky.setAttribute('material','opacity',0);
+
+		 	var title = document.getElementById("title");
+			
+			let response = fetch(feed, {method: 'GET'}).then(function(response){
+				response.json().then(function(value){
+					console.log(value);
+					items = value;
+					length = items.length;
+					console.log("---", items)
+					sky.setAttribute('src',items[current].src);
+					title.setAttribute('text',"value",items[current].title);
+				});
+			});
+		 };
+		 
+		 AFRAME.registerComponent('next', {
+			 init: function () {
+				 this.el.addEventListener('click', function (evt) {
+					 var sky = document.getElementById("sky");
+		 			 var title = document.getElementById("title");
+					 current = (current + 1) % length;
+					 sky.setAttribute('material','opacity',0);
+					 sky.setAttribute('src',items[current].src);
+					 title.setAttribute('text',"value",items[current].title);
+				 });
+			 }
+		 });
+		 
+		  AFRAME.registerComponent('previous', {
+			 init: function () {
+				 this.el.addEventListener('click', function (evt) {
+					 var sky = document.getElementById("sky");
+		 			 var title = document.getElementById("title");
+					 current = (current - 1 + length) % length;
+					 sky.setAttribute('material','opacity',0);
+					 sky.setAttribute('src',items[current].src);
+					 title.setAttribute('text',"value",items[current].title);
+				 });
+			 }
+		 });
+		 
+	  </script>
+  </head>
+  <body>
+    <a-scene id="scene">
+	  <a-entity>
+	  	<a-entity laser-controls="hand:left" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  	<a-entity laser-controls="hand:right" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  </a-entity>
+		  
+	  <a-entity id="rig" position="0 0 0" rotation="0 0 0" animation="property: rotation">
+			  <a-camera id="camera" wasd-controls="enabled:false"  cursor="rayOrigin:mouse">
+		  	  </a-camera>
+	  </a-entity>
+		
+	  <a-sky 
+			 id="sky" 
+			 radius="500" 
+			 src=""
+			 animation="easing:linear;property: material.opacity; from:0; to:1; dur: 2000; startEvents: materialtextureloaded"
+	  ></a-sky>
+		
+	  <a-sky  
+			 radius="5000" 
+			 color="black"
+	  ></a-sky>
+		
+      <a-plane id="title" class="collide" position="0 .2 -4" height="0.5" width="5"  color="white" transparent="true" opacity="0.8"
+			   text="value:Loading...;zOffset:.01;color:black;align:center;width:3;height:0.5"></a-plane>
+		
+	 <a-plane next collide class="collide" position="3.5 .2 -4" height="0.5" width="0.7"  color="blue" transparent="true" opacity="0.8"
+			  text="value:Next;zOffset:.01;color:white;align:center;width:3;height:0.5"></a-plane>
+		
+	 <a-plane previous collide class="collide" position="-3.5 .2 -4" height="0.5" width="0.7"  color="blue"  transparent="true" opacity="0.8"
+				  text="value:Previous;zOffset:.01;color:white;align:center;width:3;height:0.5"></a-plane>
+
+    </a-scene>
+	  <div id="helptext"><ouc:div label="maincontent" group="Everyone" button-text="Main Content"><p>Desktop: Use mouse or left-right arrow keys to rotate.</p></ouc:div>
+	  </div>
+  <!-- ouc:button --><a href="https://a.cms.omniupdate.com/10?skin=outc20&amp;account=master-outc20&amp;site=gallena&amp;action=de&amp;path=/vr/photosphere/json-feed.html">Last Updated 2/28/20</a><!-- /ouc:button --></body>
+</html>

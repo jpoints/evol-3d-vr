@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<title>aframe starter</title>
+    <script src="/_resources/src/aframe.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/_resources/src/helptext.css">
+	 <script>		 
+		 AFRAME.registerComponent('controls', {
+			init: function () {
+			// Use events to figure out what raycaster is listening so we don't have to
+			// hardcode the raycaster.
+			this.el.addEventListener('raycaster-intersected', evt => {
+			  this.el.setAttribute('emissive','#7B7A79');
+			});
+			this.el.addEventListener('raycaster-intersected-cleared', evt => {
+			   this.el.setAttribute('emissive','#000');
+			});
+			this.el.addEventListener('click', evt => {
+			   this.el.emit("spin",{},true);
+				console.log("clicked");
+				
+			});
+		  }
+		});
+	  </script>
+	  
+	  
+  </head>
+  <body>
+    <a-scene>
+	  <a-entity>
+	  	<a-entity laser-controls="hand:left" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  	<a-entity laser-controls="hand:right" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  </a-entity>
+		
+		<a-sphere 
+				  color="red"
+				  radius=".1"
+				  id="cursor">
+		</a-sphere>
+		  
+		  
+	  <a-camera id="camera" cursor="rayOrigin:mouse"></a-camera>
+		
+	  <a-sky radius="10000" color="lightblue"></a-sky>
+      <a-box controls id="test" class="collide" position="0 1.5 -3" rotation="10 45 10" color="blue"
+			 animation__rotate="startEvents:spin;easing:linear;property: rotation; from: 10 45 10; to:0 405 0; dur: 2000"
+			 ></a-box>
+
+
+    </a-scene>
+	  <div id="helptext"><ouc:div label="maincontent" group="Everyone" button-text="Main Content"><p>Desktop:&nbsp;</p>
+<p>Use arrow keys to rotate camera.</p>
+<p>Click the box to rotate it.</p></ouc:div>
+	  </div>
+</html>

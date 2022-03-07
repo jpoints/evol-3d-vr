@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Model Viewer AR - VR</title>
+  <meta name="description" content="Model Viewer (VR / AR) • A-Frame">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script src="/_resources/src/aframe.min.js"></script>
+  <!-- <script src="/_resources/src/model-viewer/info-message.js"></script> -->
+  <script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
+  <script src="/_resources/src/model-viewer/hide-on-enter-ar.js"></script>
+  <script src="/_resources/src/model-viewer/ar-shadows.js"></script>
+  <script src="/_resources/src/model-viewer/ar-hit-test.js"></script>
+  <script src="/_resources/src/model-viewer/model-viewer.js"></script>
+  <script src="/_resources/src/model-viewer/background-gradient.js"></script>
+</head>
+<body>
+	<!-- This was taken from the aframe example, but everything is defined in the modal-viewer.js file -->
+
+<a-scene model-viewer="gltfModel: #spaceship; title:">
+  <a-assets>
+    <a-asset-item id="spaceship"
+      src="/_resources/models/spaceship/spaceship.gltf"
+      response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+    <img id="shadow" src="/_resources/images/shadow.png"></img>
+  </a-assets>
+
+
+ 
+</a-scene>
+</body>
+</html>

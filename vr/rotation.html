@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<title>aframe starter</title>
+    <script src="/_resources/src/aframe.min.js"></script>
+	<script src="/_resources/src/button.js"></script>
+	<link rel="stylesheet" type="text/css" href="/_resources/src/helptext.css">
+
+  </head>
+  <body>
+    <a-scene>
+		
+		
+	  <a-entity>
+	  	<a-entity laser-controls="hand:left" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  	<a-entity laser-controls="hand:right" raycaster="objects: .collide; far: 1000;showline:true"></a-entity>
+	  </a-entity>
+		  
+		<a-sky
+		 id="sky"
+		 radius="1000"
+		 src="/_resources/images/square.png"
+		 repeat="50 50"
+			   ></a-sky>
+		
+	   <a-camera id="camera" cursor="rayOrigin:mouse"></a-camera>
+		
+	   <a-sphere src="/_resources/images/earth.jpg" position="-3 1 -3" rotation="0 0 0" color="grey"></a-sphere>
+	   <a-text position="-4 2.5 -3" value="Normal, no rotation \n (0 0 0)"></a-text>
+	   <a-sphere src="/_resources/images/earth.jpg" position="0 1 -3" rotation="0 -90 0" color="grey"></a-sphere>
+	   <a-text position="-1 2.5 -3" value="Rotate on y axis \n (0 -90 0) \n equator, yaw"></a-text>
+	   <a-sphere src="/_resources/images/earth.jpg" position="3 1 -3" rotation="90 0 0" color="grey"></a-sphere>
+	   <a-text position="2 2.5 -3" value="Rotate on x axis \n (90 0 0) \n prime meridian, pitch"></a-text>
+	   <a-sphere src="/_resources/images/earth.jpg" position="6 1 -3" rotation="00 0 90" color="grey"></a-sphere>
+	   <a-text position="5 2.5 -3" value="Rotate on z axis \n (90 0 0) \n door knob, roll"></a-text>
+
+
+
+
+
+	   <a-circle id="floor" position="0 -1 0" src="/_resources/images/square.png" material="repeat: 100 100" height="100 " width="100" radius="100" rotation="-90 0 0" ></a-circle>
+		
+    </a-scene>
+	  <div id="helptext"><ouc:div label="maincontent" group="Everyone" button-text="Main Content"><p>If desktop mode, use arrow keys or WASD to walk around.</p></ouc:div>
+	  </div>
+  <!-- ouc:button --><a href="https://a.cms.omniupdate.com/10?skin=qa&amp;account=testing-update3&amp;site=gallena&amp;action=de&amp;path=/aframe/vr/aframe/rotation.html">Last Updated 2/22/20</a><!-- /ouc:button --></body>
+</html>

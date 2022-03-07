@@ -1,0 +1,34 @@
+[{
+		"src": "/_resources/images/photospheres/ou-cafe.jpeg",
+		"title": "Modern Campus Cafe",
+		"description": "Two times a day the cafe is packed: \n\n 1) lunch time \n\n 2) the moment the coffee is done brewing! \n\n We also have a pretty impressive turnout during our trivia tournaments or Lunch & Learn sessions.",
+		"imgdescription": "The Cafe has a set of tables with chairs and benches in main area. In the back corner there this a lounge with two couches. The cafe flows into the kitchen area."
+
+	},
+	{
+		"src": "/_resources/images/photospheres/snacks.jpeg",
+		"title": "Snacks!!",
+		"description": "One of the many perks of being an Modern Campus employee is the snack bar! The health conscious can find fresh fruit, humus, and granola. There's a steady supply of M&Ms for those in need of a quick chocolate fix. And the developer's best friend, an espresso machine, can be found gracing the kitchen island.",
+		"imgdescription": "There is a counter that has several contains that have a vareity of cereal and nuts. To the right of those containers, there is a basket that contains bags of chips and cookies. Then further to the right there is a coffee machine. On the left side, there glass refrideator that contains a vaerity of beverages."
+	},
+	{
+		"src": "/_resources/images/photospheres/arch-rock.jpeg",
+		"title": "Arch Rock",
+		"description": "One of our four conference rooms, Arch Rock is a center for collaborative work and brain power. Here, we gather to discuss upcoming product releases, plan customer projects, and Zoom Room conference with our remote teammates in throughout the US and Canada.",
+		"imgdescription": "There is a long tables with lots of chairs, and even more chairs lining the walls. On the right wall there is a large white board with lots of doodles on it. At the front of the room there is a large monitor."
+	},
+	{
+		"src": "/_resources/images/photospheres/training-room.jpeg",
+		"title": "Training Room",
+		"description": "Whether our new employees will be supporting our OU Campus administrators or developing the XSL that powers our customer's websites, they begin their careers here in the Training Room. We've even had a few customers take advantage of this room when traveling to our offices for customized training sessions!",
+  		"imgdescription": "The room contains several desks with dedicated monitor for each student. There is a podium in front of the room, a small whitboard, and a monitor attached to the wall."
+
+	},
+	{
+		"src": "/_resources/images/photospheres/suite-100.jpeg",
+		"title": "Suite 100",
+		"description": "Welcome to OmniUpdate! Here in Suite 100, you'll find our amazing Sales and Marketing teams. Visitors and employees alike will often hang out on the couch or wander by our photo wall while waiting for a conference room to open.",
+		"imgdescription": "To the right there is a reception area. It has a waiting bench and a tree. In the main room, there is a center table that is attached to a support beam, a small couch, and a trophy display with lots of trophies."
+
+	}
+]
