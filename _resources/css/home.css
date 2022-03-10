@@ -1,0 +1,13 @@
+/* Home Page Specific styles*/
+.news.featured{
+	background-color:#f2f2f2;
+	border:1px solid #d8d8d8;
+	position:relative;
+}
+.news.featured .description{
+	clear:both;
+	font-size:0.9em;
+}
+
+.flexslider{ border:0; }
+.flex-direction-nav a:hover{ color:#000; }

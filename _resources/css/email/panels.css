@@ -1,0 +1,77 @@
+/***********************
+*  Panels CSS Styling  *
+***********************/
+.panel{
+	background: #f2f2f2;
+	border: 1px solid #d9d9d9;
+	padding: 10px !important;
+}
+
+.panel-grey{
+	background:#f2f2f2;
+	border: 1px solid #d8d8d8;
+}
+
+.panel-blue {
+	background: #6091ba;
+	border: 1px solid #2f506c;
+	padding: 10px !important;
+	color:#ffffff;
+}
+
+.panel-red {
+	background: #A72222;
+	border: 1px solid #792222;
+	padding: 10px !important;
+	color:#ffffff;
+}
+
+.panel-green {
+	background: #055C05;
+	border: 1px solid #0F440F;
+	padding: 10px !important;
+	color:#ffffff;
+}
+
+.panel-dgrey{
+	background:#444;
+	border: 1px solid #b2b2b2;
+	color:#FFF;
+}
+
+.panel-blue h1,
+.panel-blue h2,
+.panel-blue h3,
+.panel-blue h4,
+.panel-blue h5,
+.panel-blue h6,
+.panel-blue p,
+.panel-blue p a,
+.panel-red h1,
+.panel-red h2,
+.panel-red h3,
+.panel-red h4,
+.panel-red h5,
+.panel-red h6,
+.panel-red p,
+.panel-red p a,
+.panel-green h1,
+.panel-green h2,
+.panel-green h3,
+.panel-green h4,
+.panel-green h5,
+.panel-green h6,
+.panel-green p,
+.panel-green p a,
+.panel-dgrey h1,
+.panel-dgrey h2,
+.panel-dgrey h3,
+.panel-dgrey h4,
+.panel-dgrey h5,
+.panel-dgrey h6,
+.panel-dgrey p,
+.panel-dgrey p a{
+	color:#ffffff;
+}
+		
+

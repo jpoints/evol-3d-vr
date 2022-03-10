@@ -1,0 +1,125 @@
+	/**********************************************
+	* 			   School Color Theme       	  *
+	**********************************************/
+	
+	/* Typography */
+	
+	h1 {font-size: 36px;}
+	h2 {font-size: 32px;}
+	h3 {font-size: 28px;}
+	h4 {font-size: 24px;}
+	h5 {font-size: 20px;}
+	h6 {font-size: 18px;}
+
+	a {
+		color:#A72222; 
+		text-decoration: none;
+	}
+	
+	a:hover { 
+		color: #0D437F !important;
+	}
+	
+	a:active { 
+		color:#A72222 !important;
+	}
+	
+	a:visited { 
+		color:#A72222 !important;
+	}
+	
+	h1 a, 
+	h2 a, 
+	h3 a, 
+	h4 a, 
+	h5 a, 
+	h6 a {
+		color:#A72222;
+	}
+	
+	h1 a:active, 
+	h2 a:active,  
+	h3 a:active, 
+	h4 a:active, 
+	h5 a:active, 
+	h6 a:active { 
+		color:#A72222 !important; 
+	} 
+	
+	h1 a:visited, 
+	h2 a:visited,  
+	h3 a:visited, 
+	h4 a:visited, 
+	h5 a:visited, 
+	h6 a:visited { 
+		color:#A72222 !important; 
+	} 
+	
+	
+	.header {
+		background:#A72222;
+	}
+	
+	.footer {
+		background: #444444;
+	}
+	.disclaimer {
+		background: #f2f2f2;
+	}
+
+	/*Button Colors */
+	table.theme.button td,
+	table.theme.tiny-button td,
+	table.theme.small-button td,
+	table.theme.medium-button td,
+	table.theme.large-button td {
+		background:#A72222;
+		border: 1px solid #792222;
+		color: #ffffff;
+		padding: 8px 0;
+	}
+
+	table.theme.button:hover td,
+	table.theme.button:visited td,
+	table.theme.button:active td {
+		background: #792222 !important;
+	}
+	
+	table.theme.button:hover td,
+	table.theme.tiny-button:hover td,
+	table.theme.small-button:hover td,
+	table.theme.medium-button:hover td,
+	table.theme.large-button:hover td {
+		background: #792222 !important;
+	}
+
+	.panel-theme {
+		background: #A72222;
+		border: 1px solid #792222;
+		padding: 10px !important;
+		color:#ffffff;
+	}
+	.panel-theme h1,
+	.panel-theme h2,
+	.panel-theme h3,
+	.panel-theme h4,
+	.panel-theme h5,
+	.panel-theme h6,
+	.panel-theme p,
+	.panel-theme p a{
+		color:#ffffff;
+	}
+
+	/* Added in OU Classes */
+	h1, h2, h3, h4, h5, h6,
+	.theme-color-highlight {
+		color:#A72222;
+	}
+	.black {
+		color:#3D3D3B;
+	}
+	.date {
+		color:#A72222;
+		font-size:18px;
+		text-align:right;
+	}
